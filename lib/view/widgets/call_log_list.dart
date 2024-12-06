@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_call_app/modal/Date_Time_Formatter.dart';
 import 'package:phone_call_app/modal/notification_serviice.dart';
 import 'package:phone_call_app/view/calling_screen.dart';
 
@@ -24,15 +25,33 @@ class CallLogList extends StatelessWidget {
                     phoneno: contact,
                   )),
         );
-        NotificationHelper.showNotification(
-          "Meeting Joined",
-          "You have joined the meeting:",
-        );
+      
       },
       leading: Icon(icon, color: iconColor),
-      title: Text(contact),
-      subtitle: Text(time),
-      trailing: Icon(Icons.info_outline),
+      title: Text(
+        contact,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ),
+      // subtitle: Text(time),
+      subtitle: Text('India'),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            DateTimeFormatter.formatDateTime(time),
+            style: TextStyle(fontSize: 12, color: Colors.grey),
+          ),
+          SizedBox(height: 4),
+          Icon(
+            Icons.info_outline,
+            color: Colors.grey,
+            size: 20,
+          ),
+        ],
+      ),
     );
     /* return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),

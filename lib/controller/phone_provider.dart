@@ -39,8 +39,8 @@ class PhoneProvider with ChangeNotifier {
                 )),
       );
       await NotificationHelper.showNotification(
-        "Meeting Joined",
-        "You have joined the meeting:",
+        "Call ended",
+        "You have ended the call",
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -84,5 +84,6 @@ class PhoneProvider with ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+    log('logs callinglength:${callLogs.length}');
   }
 }

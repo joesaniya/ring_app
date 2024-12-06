@@ -42,6 +42,7 @@ dependencies:
   agora_rtc_engine: ^6.3.2
   flutter_local_notifications: ^18.0.1
   shared_preferences: ^2.3.3
+  intl: ^0.20.1
   
 
 dev_dependencies:

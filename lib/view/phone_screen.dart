@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:phone_call_app/controller/phone_provider.dart';
 import 'package:phone_call_app/view/widgets/call_log_list.dart';
@@ -17,11 +18,13 @@ class _PhoneScreenState extends State<PhoneScreen> {
     super.initState();
 
     controller = PhoneProvider();
+    controller.fetchCallLogs();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<PhoneProvider>(builder: (context, provider, _) {
+      log('logs callinglengthhh:${provider.callLogs.length}');
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -68,7 +71,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       ),
                     ),
                   ),
-                  GridView.builder(
+                  /*  GridView.builder(
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
@@ -102,6 +105,36 @@ class _PhoneScreenState extends State<PhoneScreen> {
                         style: ElevatedButton.styleFrom(
                           shape: CircleBorder(),
                           padding: EdgeInsets.all(20),
+                        ),
+                      );
+                    },
+                  ),*/
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 2,
+                    ),
+                    itemCount: 12,
+                    itemBuilder: (context, index) {
+                      String text;
+                      if (index == 9) {
+                        text = '*';
+                      } else if (index == 10) {
+                        text = '0';
+                      } else if (index == 11) {
+                        text = '#';
+                      } else {
+                        text = '${index + 1}';
+                      }
+                      return InkWell(
+                        onTap: () => provider.appendDigit(text),
+                        child: Center(
+                          child: Text(
+                            text,
+                            style: TextStyle(fontSize: 24),
+                          ),
                         ),
                       );
                     },

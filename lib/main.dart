@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               fontFamily: "Montserrat",
               useMaterial3: false,
             ),
-            home: BottomScreen(),
+            home: const BottomScreen(),
           );
         });
   }
