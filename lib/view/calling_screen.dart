@@ -60,10 +60,8 @@ class _CallingScreenState extends State<CallingScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      // App is minimized
       showCallNotification();
     } else if (state == AppLifecycleState.resumed) {
-      // App is active
       removeCallNotification();
     }
     super.didChangeAppLifecycleState(state);
