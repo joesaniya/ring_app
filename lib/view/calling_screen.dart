@@ -46,15 +46,15 @@ class _CallingScreenState extends State<CallingScreen>
         NotificationDetails(android: androidDetails);
 
     await flutterLocalNotificationsPlugin.show(
-      0, // Notification ID
+      0,
       'Active Call',
-      'You are in a call with Shinchan',
+      'You are in a call with Unknown',
       notificationDetails,
     );
   }
 
   Future<void> removeCallNotification() async {
-    await flutterLocalNotificationsPlugin.cancel(0); // Remove notification
+    await flutterLocalNotificationsPlugin.cancel(0);
   }
 
   @override
@@ -95,7 +95,7 @@ class _CallingScreenState extends State<CallingScreen>
                   Padding(
                     padding: const EdgeInsets.only(top: 60),
                     child: Text(
-                      'Shinchan',
+                      'UnKnown',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),

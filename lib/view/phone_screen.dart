@@ -18,7 +18,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
     super.initState();
 
     controller = PhoneProvider();
-    controller.fetchCallLogs();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<PhoneProvider>(context, listen: false).fetchCallLogs();
+    });
   }
 
   @override
@@ -67,7 +69,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                       readOnly: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Enter phone number',
+                        hintText: 'Dial a number',
                       ),
                     ),
                   ),

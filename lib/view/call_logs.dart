@@ -11,14 +11,17 @@ class CallLogScreen extends StatefulWidget {
 }
 
 class _CallLogScreenState extends State<CallLogScreen> {
-   late PhoneProvider controller;
+  late PhoneProvider controller;
   @override
   void initState() {
     super.initState();
 
     controller = PhoneProvider();
-    controller.fetchCallLogs();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<PhoneProvider>(context, listen: false).fetchCallLogs();
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

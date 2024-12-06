@@ -70,8 +70,30 @@ class PhoneProvider with ChangeNotifier {
 
   List<Map<String, String>> get callLogs => _callLogs;
   bool get isLoading => _isLoading;
-
   Future<void> fetchCallLogs() async {
+    log('logs calling');
+    _isLoading = true;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    List<String> callLogs = prefs.getStringList('callLogs') ?? [];
+    _callLogs = callLogs
+        .map((log) => Map<String, String>.from(jsonDecode(log)))
+        .toList();
+
+    // Sort the logs by timestamp in descending order
+    _callLogs.sort((a, b) {
+      DateTime aTime = DateTime.parse(a['timestamp']!);
+      DateTime bTime = DateTime.parse(b['timestamp']!);
+      return bTime.compareTo(aTime); // Sorting in descending order
+    });
+
+    _isLoading = false;
+    notifyListeners();
+    log('logs calling length: ${callLogs.length}');
+  }
+
+  Future<void> fetchCallLogs1() async {
     log('logs calling');
     _isLoading = true;
     notifyListeners();
